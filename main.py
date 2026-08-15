@@ -11,11 +11,11 @@ API_KEY = os.environ.get('ASTRAL_API_KEY')
 def encender_servidor():
     print("[BOT] ¡Conexión detectada! Enviando señal de encendido...")
     headers = {
-        "Authorization": f"Bearer {API_KEY}",
+        "Authorization": f"Bearer os.environ.get'ASTRAL_API_KEY'",
         "Content-Type": "application/json",
         "Accept": "application/json"
     }
-    url = f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power"
+    url = f"https://astralnodes.net/api/client/servers/20431082/power"
     data = {"signal": "start"}
     try:
         response = requests.post(url, json=data, headers=headers)
