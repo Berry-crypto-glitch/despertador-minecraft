@@ -4,22 +4,23 @@ import threading
 import requests
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-PANEL_URL = "https://astralnodes.net"
+DOMINIO_REAL = "gamedash" + ".astralnodes.net"
+PANEL_URL = f"https://{DOMINIO_REAL}"
 SERVER_ID = "20431082"
 API_KEY = os.environ.get('ASTRAL_API_KEY') 
 
 def encender_servidor():
     print("[BOT] ¡Conexión detectada! Enviando señal de encendido...")
     headers = {
-        "Authorization": f"Bearer os.environ.get'ASTRAL_API_KEY'",
+        "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json",
-        "Accept": "application/json"
+        "Accept": "application/json" 
     }
-    url = f"https://astralnodes.net/api/client/servers/20431082/power"
+    url = f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power"
     data = {"signal": "start"}
     try:
         response = requests.post(url, json=data, headers=headers)
-        if response.status_code in [200, 201, 204]:
+        if response.status_code in: [200, 201, 204]
             print("[BOT] ¡Señal enviada con éxito!")
         else:
             print(f"[BOT] Error en la API: {response.status_code}")
@@ -36,7 +37,6 @@ def escuchar_minecraft():
         threading.Thread(target=encender_servidor).start()
         client_socket.close()
 
-# Servidor web falso para que Render no tire error de despliegue
 class FakeWebHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -54,6 +54,5 @@ if __name__ == "__main__":
     if not API_KEY:
         print("[ERROR] No se configuró la ASTRAL_API_KEY.")
     else:
-        # Iniciamos los dos servidores a la vez usando hilos
         threading.Thread(target=iniciar_servidor_web, daemon=True).start()
         escuchar_minecraft()
