@@ -20,7 +20,7 @@ def encender_servidor():
     data = {"signal": "start"}
     try:
         response = requests.post(url, json=data, headers=headers)
-        if response.status_code in: 200, 201, 204
+       if response.status_code in [200, 201, 204]:
             print("[BOT] ¡Señal enviada con éxito!")
         else:
             print(f"[BOT] Error en la API: {response.status_code}")
