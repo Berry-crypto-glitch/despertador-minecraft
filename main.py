@@ -7,7 +7,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 DOMINIO_REAL = "gamedash" + ".astralnodes.net"
 PANEL_URL = f"https://{DOMINIO_REAL}"
 SERVER_ID = "20431082"
-API_KEY = os.environ.get('ASTRAL_API_KEY') 
+API_KEY = os.environ.get('ASTRAL_API_KEY')
 
 def encender_servidor():
     print("[BOT] ¡Conexión detectada! Enviando señal de encendido...")
